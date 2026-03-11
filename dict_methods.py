@@ -9,19 +9,26 @@ def add_item(current_cart, items_to_add):
     :return: dict - the updated user cart dictionary.
     """
     cart = current_cart
-    i = 0
-    for i in range(len(items_to_add)):
-        if items_to_add[i] in cart:
-            cart[items_to_add[i]] += 1
+    if isinstance(items_to_add, str):
+        items_to_add = [items_to_add]
+
+    for item in items_to_add:
+        if item in cart:
+            cart[item] += 1
         else:
-            cart.setdefault(items_to_add[i], 1)
+            cart[item] = 1
     return cart
 
-# cart = {"Apple": 1, "Banana": 4}
+cart = {"Apple": 1, "Banana": 4}
+print(range(len(cart)))
 
-# add_item(cart, ("Apple", "Banana", "Orange"))
+add_item(cart, ("Apple", "Banana", "Orange"))
 
-# print(cart)
+print(cart)
+
+add_item(cart, "Apple")
+
+print(cart)
 
 def read_notes(notes):
     """Create user cart from an iterable notes entry.
